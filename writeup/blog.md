@@ -81,7 +81,7 @@ Now that there was a way to control the RGB LEDs, it is time to code the logic f
 
 The moment you've all been waiting for! The white flash is buggy right now as you'll see at the beginning and end of the video.
 
-![barleddemo](bar-led-demo.mp4)
+https://youtube.com/shorts/Z1zEJhVeFfM?feature=share
 
 Overall, I enjoyed building this project and thought it was a fun way to work with both software and hardware. Like I said in the beginning of the article, the reward of the light show the second I set down my glass was enough to justify all the work that was put int. I learned a lot about weight sensing and found the [Wheatstone Bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge) to be quite fascinating - I never would have expected such an elegant concept in something that seems as simple as detecting weight. 
 
