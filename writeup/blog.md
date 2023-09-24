@@ -89,3 +89,31 @@ Now that there was a way to control the RGB LEDs, it is time to code the "flouri
 ## Wrap-up & Moving Forward
 
 The moment you've all been waiting for! The white flash is buggy right now as you'll see at the beginning and end of the video, but I am fairly happy with how things turned out.
+
+https://youtu.be/Z1zEJhVeFfM
+
+Overall, I enjoyed building this project and thought it was a fun way to work with both software and hardware. Like I said in the beginning of the article, the reward of the light show the second I set down my glass was enough to justify all the work that was put int. I learned a lot about weight sensing and found the [Wheatstone Bridge](https://en.wikipedia.org/wiki/Wheatstone_bridge) to be quite fascinating - I never would have expected such an elegant concept in something that seems as simple as detecting weight. 
+
+Over time, my cats have really found a lot of enjoyment in the project as well...
+
+![cat-disassembly.jpg](cat-disassembly.jpg)
+
+Now that my hand has been forced to rebuild, I have some thoughts for improving version 2:
+- Create a PCB of the circuit rather than doing everything on a breadboard. The PCB should include an ATMEGA328
+- 3D print of coaster for open source hardware functionality. As of now everything is haphazardly glued to an old coaster...
+- Buy Neopixel LED strips to enable individual addressing
+- Implement circuitry to enable individual addressing of each strip
+- Small debugging for functionality
+	- Make the light show very distinct; the visual fingerprinting doesn't matter if our eyes can't actually distinguish with our eyes how they're different because it just looks random.
+	- Moving average filtering so the lighting smoothly turns on and off & transitions between colors.
+
+What would you like to see in version 2? 
+
+![coaster-underside.jpg](coaster-underside.jpg)
+
+> As much as I was happy with the quality of my software and design, the elegance of the final assembled form could use improvement
+
+#### Other Resources
+- [Getting started with load cells - sparkfun](https://learn.sparkfun.com/tutorials/getting-started-with-load-cells?_gl=1*yfrrt3*_ga*Mzk5MzU0OTU5LjE2OTI0NzYwNzk.*_ga_T369JS7J9N*MTY5MjQ3NjA3OC4xLjEuMTY5MjQ3NzgxNy42MC4wLjA.&_ga=2.250248710.1435746813.1692476080-399354959.1692476079)
+- [hx711 hookup guide - sparkfun](https://learn.sparkfun.com/tutorials/load-cell-amplifier-hx711-breakout-hookup-guide?_gl=1*pirsfj*_ga*Mzk5MzU0OTU5LjE2OTI0NzYwNzk.*_ga_T369JS7J9N*MTY5MjQ3NjA3OC4xLjEuMTY5MjQ3ODExOC4xOC4wLjA.&_ga=2.220755480.1435746813.1692476080-399354959.1692476079)
+- [Barely Functional Theories Blog - The Drunk Bishop Algorithm](https://www.jfurness.uk/the-drunken-bishop-algorithm/)
