@@ -26,6 +26,9 @@
  * -  step function: updates the struct's state by progressing its path one step forward
  */
 
+#include <HX711.h>
+#include <XxHash_arduino.h>
+
 //global constants
 #define ERROR   -1;
 #define SUCCESS  0;
@@ -41,11 +44,11 @@ typedef struct rgb_cube
 
 //global variables
 rgb_cube_t * bar_cube;
-int path_size = 19;
+int path_size = 17;
 int display_delay = 30;
 int display_increment = 5;
-int step_size = 21;
-char path[19] = "this is a test!!!!";
+int step_size = 16; //discrete RGB bin size that determines how big the cube is. Step size 8 creates a 32x32x32 cube (256 / 8 = 32). Step size 1 is maximum cube size.
+char path[17] = "this is a test!!"; //actually 16 characters, creating one extra for the null byte
 
 /*
  * @brief print out the values of the rgb_cube so that the user is aware of its state
@@ -197,8 +200,35 @@ void setup()
    //initialization parameters, tune these
   int16_t start_point[3] = {255, 255, 255}; //more or less the middle of the cube
 
-  //create the cube
-  bar_cube = rgb_cube_init(step_size, path, path_size, start_point);
+  //hash path
+  char hashed_path_string[34] = { 0 };
+  char hashed_path_char[17] = { 0 };
+  int index = 0;
+  for(int i = 0; i < 4; i++)
+  {
+    char hash[9] = { 0 };
+    char shortened_string[4] = { 0 };
+    memcpy(shortened_string, path[i*4], 4);
+    xxh32(hash, shortened_string);
+    strcat(hashed_path_string, hash);
+    char result;
+    for(int j = 0; j < 4; j++)
+    {
+      char hex_input[3] = { 0 };
+      strncpy(hex_input, hash + (j*2), 2);
+      long val = strtol(hex_input, NULL, 16);
+      hashed_path_char[index] = (char) val;
+      index = index + 1;
+    }
+  }
+  Serial.println(hashed_path_string);
+  Serial.println(hashed_path_char);
+
+  //create the cube - unhashed version
+  //bar_cube = rgb_cube_init(step_size, path, path_size, start_point);
+
+  //create the cube - hashed version
+  bar_cube = rgb_cube_init(step_size, hashed_path_char, path_size, start_point);
 }
 
 void loop()
